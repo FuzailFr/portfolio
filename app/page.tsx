@@ -1,69 +1,116 @@
-import Image from "next/image";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
+import Hero from "@/components/Hero";
+import TechMarquee from "@/components/TechMarquee";
+import StatsStrip from "@/components/StatsStrip";
+import LanguageDistribution from "@/components/LanguageDistribution";
+import RecentActivity from "@/components/RecentActivity";
+import FeaturedProjectCard from "@/components/FeaturedProjectCard";
+import { FEATURED_PROJECTS } from "@/data/featured-projects";
+import {
+  getGithubProfile,
+  getGithubRepositories,
+  computeLanguageStats,
+  formatRelativeTime,
+} from "@/lib/github";
 
-export default function Home() {
+export default async function Home() {
+  const [profile, repos] = await Promise.all([
+    getGithubProfile(),
+    getGithubRepositories(),
+  ]);
+
+  const languageStats = computeLanguageStats(repos);
+  const featuredThree = FEATURED_PROJECTS.slice(0, 3);
+  const lastActiveFormatted = formatRelativeTime(profile.updatedAt);
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+    <div>
+      {/* 1. Hero dengan Avatar GitHub 2-Kolom Asimetris */}
+      <Hero profile={profile} />
+
+      {/* 2. Marquee Halus Tech Stack */}
+      <TechMarquee />
+
+      {/* 3. Strip Statistik dari Data Nyata GitHub */}
+      <StatsStrip
+        profile={profile}
+        totalLanguages={languageStats.length}
+        lastActiveFormatted={lastActiveFormatted}
+      />
+
+      {/* 4. Distribusi Bahasa Visual Bar & Persentase */}
+      <LanguageDistribution stats={languageStats} />
+
+      {/* 5. Aktivitas Komit / Repo Terbaru */}
+      <RecentActivity repos={repos} />
+
+      {/* 6. Proyek Pilihan dengan Layout Bervariasi */}
+      <section className="py-20">
+        <div className="mx-auto max-w-5xl px-6">
+          <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <h2 className="text-3xl font-extrabold tracking-tight text-(--text-primary)">
+                Proyek Pilihan
+              </h2>
+              <p className="mt-2 text-base text-(--text-secondary)">
+                Karya pilihan yang dirancang dengan arsitektur tangguh dan integrasi penuh.
+              </p>
+            </div>
+            <Link
+              href="/projects"
+              className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-(--accent) hover:underline sm:mt-0"
             >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+              Jelajahi semua proyek
+              <ArrowRight size={14} aria-hidden="true" />
+            </Link>
+          </div>
+
+          {/* Grid Proyek Pilihan: 1 Kartu Besar Utama + 2 Kartu Pendamping */}
+          <div className="mt-10 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+            {featuredThree.map((project, idx) => (
+              <div
+                key={project.slug}
+                className={idx === 0 ? "md:col-span-2 lg:col-span-2" : "col-span-1"}
+              >
+                <FeaturedProjectCard project={project} priority={idx === 0} />
+              </div>
+            ))}
+          </div>
+
+          {/* Section Ajakan Diskusi / Hubungi dengan skala visual kontras */}
+          <div className="mt-16 rounded-xl border border-(--border) bg-gradient-to-r from-(--surface) to-(--bg-secondary) p-8 md:p-12 shadow-sm">
+            <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+              <div className="max-w-xl">
+                <span className="text-xs font-mono uppercase tracking-wider text-(--accent)">
+                  Kolaborasi & Karir
+                </span>
+                <h3 className="mt-2 text-2xl font-bold tracking-tight text-(--text-primary) sm:text-3xl">
+                  Siap membangun sistem terukur bersama?
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-(--text-secondary)">
+                  Saya terbuka untuk peluang magang, posisi Software Engineering purna waktu, maupun eksplorasi proyek Machine Learning baru.
+                </p>
+              </div>
+
+              <div className="flex flex-wrap gap-3">
+                <Link
+                  href="/about"
+                  className="rounded border border-(--border) bg-(--bg) px-5 py-2.5 text-sm font-medium text-(--text-primary) hover:border-(--text-primary) transition-colors"
+                >
+                  Lihat Profil Lengkap
+                </Link>
+                <Link
+                  href="/contact"
+                  className="rounded border border-(--text-primary) bg-(--text-primary) px-5 py-2.5 text-sm font-medium text-(--bg) hover:opacity-90 transition-opacity"
+                >
+                  Kirim Pesan
+                </Link>
+              </div>
+            </div>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+      </section>
     </div>
   );
 }
