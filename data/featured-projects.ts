@@ -19,7 +19,7 @@ export const FEATURED_PROJECTS: FeaturedProject[] = [
     tech: ["TypeScript", "CSS", "Next.js"],
     demoUrl: "https://rouve-co.vercel.app/",
     sourceUrl: "https://github.com/FuzailFr/Rouve-Co.",
-    screenshot: "/images/projects/rouve.png",
+    screenshot: undefined,
   },
   {
     slug: "zailtrack",
@@ -27,10 +27,10 @@ export const FEATURED_PROJECTS: FeaturedProject[] = [
     title: "ZailTrack",
     summary:
       "Sistem pemantauan dan tracking aktivitas dengan pencatatan terstruktur untuk efisiensi alur kerja pengembang.",
-    tech: ["Go", "CLI", "Backend"],
-    demoUrl: "", // contoh proyek backend/CLI tanpa live web demo
+    tech: ["TypeScript", "Next.js", "Tailwind CSS"],
+    demoUrl: "https://zail-track.vercel.app",
     sourceUrl: "https://github.com/FuzailFr/ZailTrack",
-    screenshot: "/images/projects/zailtrack.png",
+    screenshot: undefined,
   },
   {
     slug: "smart-waste-management",
@@ -38,9 +38,9 @@ export const FEATURED_PROJECTS: FeaturedProject[] = [
     title: "Smart Waste Management",
     summary:
       "Solusi cerdas klasifikasi dan pemantauan volume limbah berbasis model machine learning dan integrasi sensor IoT.",
-    tech: ["Python", "Machine Learning", "IoT"],
-    demoUrl: "",
+    tech: ["Python", "Machine Learning", "IoT", "HTML"],
+    demoUrl: "https://fuzailfr.github.io/Smart-Waste-Management/",
     sourceUrl: "https://github.com/FuzailFr/Smart-Waste-Management",
-    screenshot: "/images/projects/smart-waste.png",
+    screenshot: undefined,
   },
 ];

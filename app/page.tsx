@@ -23,7 +23,19 @@ export default async function Home() {
   ]);
 
   const languageStats = computeLanguageStats(repos);
-  const featuredThree = FEATURED_PROJECTS.slice(0, 3);
+  const enrichedFeatured = FEATURED_PROJECTS.map((proj) => {
+    const liveRepo = repos.find(
+      (r) => r.name.toLowerCase() === proj.repoName.toLowerCase()
+    );
+    return {
+      ...proj,
+      demoUrl:
+        liveRepo?.homepage && liveRepo.homepage.trim() !== ""
+          ? liveRepo.homepage
+          : proj.demoUrl,
+    };
+  });
+  const featuredThree = enrichedFeatured.slice(0, 3);
   const lastActiveFormatted = formatRelativeTime(profile.updatedAt);
 
   return (

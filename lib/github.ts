@@ -40,6 +40,7 @@ const FALLBACK_REPOSITORIES: GithubRepository[] = [
     name: "Rouve-Co.",
     description: "Project by Fuzail Fazle Rabbi.",
     html_url: `https://github.com/${GITHUB_USERNAME}/Rouve-Co.`,
+    homepage: "https://rouve-co.vercel.app",
     language: "CSS",
     topics: [],
     stargazers_count: 0,
@@ -50,16 +51,18 @@ const FALLBACK_REPOSITORIES: GithubRepository[] = [
     name: "ZailTrack",
     description: "Project by Fuzail Fazle Rabbi.",
     html_url: `https://github.com/${GITHUB_USERNAME}/ZailTrack`,
-    language: "Go",
+    homepage: "https://zail-track.vercel.app",
+    language: "TypeScript",
     topics: [],
     stargazers_count: 0,
-    updated_at: "2026-08-15T10:20:00Z",
+    updated_at: "2026-11-05T20:07:05Z",
   },
   {
     id: -3,
     name: "Smart-Waste-Management",
     description: "Project by Fuzail Fazle Rabbi.",
     html_url: `https://github.com/${GITHUB_USERNAME}/Smart-Waste-Management`,
+    homepage: "https://fuzailfr.github.io/Smart-Waste-Management/",
     language: "Python",
     topics: [],
     stargazers_count: 0,
@@ -72,6 +75,7 @@ interface RawGithubRepo {
   name: string;
   description: string | null;
   html_url: string;
+  homepage?: string | null;
   language: string | null;
   topics?: string[];
   stargazers_count: number;
@@ -88,6 +92,19 @@ function sanitizeGithubUrl(url: string): string {
     }
   } catch {}
   return `https://github.com/${GITHUB_USERNAME}`;
+}
+
+export function sanitizeWebUrl(url: string | null | undefined): string | null {
+  if (!url || typeof url !== "string") return null;
+  const trimmed = url.trim();
+  if (!trimmed) return null;
+  try {
+    const parsed = new URL(trimmed);
+    if (parsed.protocol === "https:" || parsed.protocol === "http:") {
+      return trimmed;
+    }
+  } catch {}
+  return null;
 }
 
 function isValidRawRepo(repo: unknown): repo is RawGithubRepo {
@@ -108,6 +125,7 @@ function normalize(repo: RawGithubRepo): GithubRepository {
     name: repo.name,
     description: repo.description,
     html_url: sanitizeGithubUrl(repo.html_url),
+    homepage: sanitizeWebUrl(repo.homepage),
     language: repo.language,
     topics: repo.topics ?? [],
     stargazers_count: repo.stargazers_count,

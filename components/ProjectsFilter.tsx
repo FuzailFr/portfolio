@@ -159,7 +159,17 @@ export default function ProjectsFilter({
                   </div>
                 </div>
 
-                <div className="shrink-0">
+                <div className="shrink-0 flex items-center gap-4">
+                  {repo.homepage && (
+                    <a
+                      href={repo.homepage}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-xs font-mono text-(--accent) hover:underline"
+                    >
+                      Live Demo ↗
+                    </a>
+                  )}
                   <a
                     href={repo.html_url}
                     target="_blank"

@@ -25,6 +25,19 @@ export default async function ProjectsPage() {
   const languageStats = computeLanguageStats(allRepos);
   const topLanguage = languageStats[0]?.language ?? "TypeScript";
 
+  const enrichedFeatured = FEATURED_PROJECTS.map((proj) => {
+    const liveRepo = allRepos.find(
+      (r) => r.name.toLowerCase() === proj.repoName.toLowerCase()
+    );
+    return {
+      ...proj,
+      demoUrl:
+        liveRepo?.homepage && liveRepo.homepage.trim() !== ""
+          ? liveRepo.homepage
+          : proj.demoUrl,
+    };
+  });
+
   return (
     <div className="py-16">
       <div className="mx-auto max-w-5xl px-6">
@@ -57,7 +70,7 @@ export default async function ProjectsPage() {
 
         {/* Client Filter & Proyek List */}
         <ProjectsFilter
-          featuredProjects={FEATURED_PROJECTS}
+          featuredProjects={enrichedFeatured}
           otherRepos={otherRepos}
         />
       </div>
