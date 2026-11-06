@@ -9,6 +9,8 @@ export const metadata: Metadata = {
     "Koleksi proyek perangkat lunak, sistem backend, dan repositori open-source oleh Fuzail Fazle Rabbi.",
 };
 
+export const revalidate = 3600;
+
 export default async function ProjectsPage() {
   const allRepos = await getGithubRepositories();
 

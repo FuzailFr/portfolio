@@ -14,6 +14,8 @@ import {
   formatRelativeTime,
 } from "@/lib/github";
 
+export const revalidate = 3600;
+
 export default async function Home() {
   const [profile, repos] = await Promise.all([
     getGithubProfile(),

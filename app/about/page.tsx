@@ -8,6 +8,8 @@ export const metadata: Metadata = {
     "Profil profesional, keahlian teknis, riwayat pengalaman kerja, dan latar belakang pendidikan Fuzail Fazle Rabbi.",
 };
 
+export const revalidate = 3600;
+
 export default function AboutPage() {
   return (
     <div className="py-8">
