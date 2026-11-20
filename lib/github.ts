@@ -31,10 +31,26 @@ const FALLBACK_PROFILE: GithubProfile = {
 };
 
 // Known repositories to prioritize if present in the live API response.
-const PRIORITY_REPOS = ["Rouve-Co.", "ZailTrack", "Smart-Waste-Management"];
+const PRIORITY_REPOS = [
+  "antigravity-essentials",
+  "ZailTrack",
+  "Rouve-Co.",
+  "Smart-Waste-Management",
+];
 
 // Static fallback used only when the GitHub API is unavailable.
 const FALLBACK_REPOSITORIES: GithubRepository[] = [
+  {
+    id: 1465579860,
+    name: "antigravity-essentials",
+    description: "Universal developer rules and skill bundle for Antigravity, Cursor, Claude Code, Windsurf, Copilot, ChatGPT, Claude.ai, and Gemini.",
+    html_url: `https://github.com/${GITHUB_USERNAME}/antigravity-essentials`,
+    homepage: null,
+    language: "Python",
+    topics: ["ai", "prompt-engineering", "developer-tools"],
+    stargazers_count: 0,
+    updated_at: "2026-11-20T16:13:55Z",
+  },
   {
     id: -1,
     name: "Rouve-Co.",

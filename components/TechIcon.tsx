@@ -30,6 +30,7 @@ import {
   SiGit,
   SiMysql,
   SiLinux,
+  SiMarkdown,
 } from "react-icons/si";
 import { Code2, BrainCircuit, Globe } from "lucide-react";
 
@@ -97,6 +98,8 @@ const TECH_MAP: Record<string, TechMeta> = {
   cli: { Icon: Code2, brandColor: "var(--accent)" },
   backend: { Icon: Code2, brandColor: "var(--accent)" },
   iot: { Icon: BrainCircuit, brandColor: "var(--accent)" },
+  markdown: { Icon: SiMarkdown, brandColor: "#000000" },
+  prompt: { Icon: BrainCircuit, brandColor: "var(--accent)" },
 };
 
 export interface TechIconProps {

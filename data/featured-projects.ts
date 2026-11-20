@@ -11,6 +11,17 @@ export interface FeaturedProject {
 
 export const FEATURED_PROJECTS: FeaturedProject[] = [
   {
+    slug: "antigravity-essentials",
+    repoName: "antigravity-essentials",
+    title: "Antigravity Essentials",
+    summary:
+      "Universal developer rules dan skill bundle (Jagoan, Anti-Slop, Humanizer) untuk efisiensi token AI, clean code hygiene, dan optimasi prompt lintas IDE dan CLI.",
+    tech: ["Python", "AI", "CLI", "Markdown"],
+    demoUrl: "",
+    sourceUrl: "https://github.com/FuzailFr/antigravity-essentials",
+    screenshot: undefined,
+  },
+  {
     slug: "rouve-co",
     repoName: "Rouve-Co.",
     title: "Rouve-Co.",

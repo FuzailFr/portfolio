@@ -35,7 +35,7 @@ export default async function Home() {
           : proj.demoUrl,
     };
   });
-  const featuredThree = enrichedFeatured.slice(0, 3);
+  const featuredProjects = enrichedFeatured;
   const lastActiveFormatted = formatRelativeTime(profile.updatedAt);
 
   return (
@@ -80,14 +80,11 @@ export default async function Home() {
             </Link>
           </div>
 
-          {/* Grid Proyek Pilihan: 1 Kartu Besar Utama + 2 Kartu Pendamping */}
-          <div className="mt-10 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {featuredThree.map((project, idx) => (
-              <div
-                key={project.slug}
-                className={idx === 0 ? "md:col-span-2 lg:col-span-2" : "col-span-1"}
-              >
-                <FeaturedProjectCard project={project} priority={idx === 0} />
+          {/* Grid Proyek Pilihan (2x2 Grid) */}
+          <div className="mt-10 grid gap-6 md:grid-cols-2">
+            {featuredProjects.map((project, idx) => (
+              <div key={project.slug}>
+                <FeaturedProjectCard project={project} priority={idx < 2} />
               </div>
             ))}
           </div>
