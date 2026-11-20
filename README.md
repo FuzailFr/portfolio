@@ -1,66 +1,54 @@
-# Portfolio — Fuzail Fazle Rabbi
+# Portfolio
 
-Personal portfolio and technical showcase of **Fuzail Fazle Rabbi**, Software Engineer and Information Technology Student specializing in Backend Systems, Web Architecture, and Machine Learning / AI Integration.
-
-Built with **Next.js 16 (App Router)**, **React 19**, **TypeScript**, and **Tailwind CSS v4**, designed for high performance, zero-runtime overhead, strict security, and seamless deployment on **Vercel**.
+Personal portfolio and technical showcase of **Fuzail Fazle Rabbi**. Built with Next.js 16 (App Router), React 19, TypeScript, and Tailwind CSS v4.
 
 ---
 
-## 🚀 Fitur Utama
+## Features
 
-- **Multi-Page App Router Architecture:**
-  - `/` (Home): Hero dua-kolom asimetris, avatar GitHub, infinite tech marquee, strip statistik GitHub nyata, visual bar distribusi bahasa, aktivitas komit terbaru, dan kartu proyek pilihan.
-  - `/projects`: Katalog proyek unggulan dengan kartu interaktif (demo/source code) + tab filter stack instan + repositori publik GitHub lainnya dengan deduplikasi.
-  - `/about`: Biografi lengkap, status mahasiswa semester 7 (Esa Unggul Bekasi), pengalaman magang di **VINIX7** (AI Division), dan ekosistem keahlian terkelompok.
-  - `/contact`: Kotak email besar dengan tombol salin clipboard instan, formulir kontak cepat (`mailto:`), dan tautan dukungan via Saweria.
-  - `app/error.tsx` & `app/not-found.tsx`: Penanganan error runtime dan 404 kustom yang selaras dengan tema.
-- **Tipografi & Desain Presisi:**
-  - Font Google modern via `next/font`: `Bricolage Grotesque` (display & body) dan `Space Mono` (metadata teknis & data numerik).
-  - Tema **Dark & Light Mode** otomatis tersimpan di `localStorage` tanpa kedipan (*zero-FOUC*) via `next/script`.
-  - Aksesibilitas teruji: WCAG AAA/AA contrast, keyboard navigation, dan menghormati penuh `prefers-reduced-motion`.
-- **Integrasi GitHub API Cerdas & Andal:**
-  - Data repositori, followers, bahasa dominan, dan timestamp ditarik dari GitHub Public API secara server-side.
-  - **Incremental Static Regeneration (ISR)** dengan revalidasi bertahap 1 jam (`revalidate: 3600`) untuk efisiensi kuota API.
-  - Fallback data statis otomatis jika jaringan atau kuota API habis.
-- **Keamanan Ketat (Production Hardened):**
-  - Sanitasi URL ketat pada tautan eksternal (memastikan hanya protokol `https://` dan domain `github.com`).
-  - Runtime type-guarding untuk setiap respons payload API pihak ketiga.
-  - HTTP Security Headers di `next.config.ts`: `Strict-Transport-Security` (HSTS), `X-Frame-Options: DENY`, `X-Content-Type-Options: nosniff`, `Referrer-Policy`, dan `Permissions-Policy`.
-  - Dukungan token opsional `GITHUB_TOKEN` di server-side untuk menaikkan limit API tanpa membocorkannya ke client.
+- **App Router Architecture:** Modular routing (`/`, `/projects`, `/about`, `/contact`) with custom error and 404 boundaries.
+- **Server-Side GitHub Integration:** Dynamic repository data, language stats, and commit activity fetched server-side with Incremental Static Regeneration (1-hour revalidation) and offline fallbacks.
+- **Design & Accessibility:** Dark and Light mode without flicker (zero-FOUC), WCAG AA/AAA contrast adherence, and `prefers-reduced-motion` compliance.
+- **Production Hardening:** Strict HTTP headers (HSTS, X-Frame-Options, no-sniff), runtime payload validation with Zod, and URL sanitization.
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
-| Lapisan | Teknologi |
-|---|---|
-| **Framework** | Next.js 16.4.5 (App Router, Turbopack) |
-| **Library UI** | React 19.2.8 & React DOM |
-| **Bahasa** | TypeScript 5 (Strict Mode) |
+| Layer | Technology |
+| :--- | :--- |
+| **Framework** | Next.js 16 (App Router, Turbopack) |
+| **UI Library** | React 19 |
+| **Language** | TypeScript 5 (Strict Mode) |
 | **Styling** | Tailwind CSS v4 & PostCSS |
-| **Ikon** | React Icons (`si` Simple Icons) & Lucide React |
+| **Icons** | Lucide React & Simple Icons |
+| **Analytics** | Vercel Analytics |
 
 ---
 
-## 💻 Menjalankan Secara Lokal
+## Getting Started
 
-Pastikan Node.js (v18.18+ disarankan) telah terpasang:
+### Prerequisites
+Node.js 18.18+ or later.
+
+### Installation
 
 ```bash
-# 1. Clone repositori
+# 1. Clone repository
 git clone https://github.com/FuzailFr/portfolio.git
 cd portfolio
 
-# 2. Pasang dependensi
+# 2. Install dependencies
 npm install
 
-# 3. Jalankan server lokal
+# 3. Run development server
 npm run dev
 ```
 
-Buka **[http://localhost:3000](http://localhost:3000)** pada peramban web.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-Untuk menguji kompilasi produksi dan type checking:
+### Type Check & Build
+
 ```bash
 npx tsc --noEmit
 npm run build
@@ -68,27 +56,24 @@ npm run build
 
 ---
 
-## ⚙️ Variabel Lingkungan (Environment Variables)
+## Environment Variables
 
-Salin template variabel lingkungan dari `.env.example` ke `.env.local` jika diperlukan:
+Create a `.env.local` file in the root directory if needed:
 
 ```env
-# URL kanonikal publik (untuk Open Graph metadataBase)
-NEXT_PUBLIC_SITE_URL=https://nama-domain-kamu.vercel.app
+# Canonical site URL for metadata
+NEXT_PUBLIC_SITE_URL=https://your-domain.vercel.app
 
-# GitHub Personal Access Token (Opsional, server-side only)
-# Meningkatkan kuota rate-limit GitHub API dari 60 req/jam menjadi 5.000 req/jam.
+# Optional: GitHub token to increase API rate limit (60 -> 5,000 req/hr)
 GITHUB_TOKEN=
 ```
 
 ---
 
-## 🚢 Panduan Deployment ke Vercel
+## Deployment
 
-Proyek ini 100% optimal untuk di-hosting di **Vercel** tanpa konfigurasi rumit:
+Optimized for deployment on [Vercel](https://vercel.com):
 
-1. Push repositori ini ke akun GitHub kamu.
-2. Buka dashboard [Vercel](https://vercel.com) dan klik **"Add New..." -> "Project"**.
-3. Pilih repositori `portfolio` dan klik **Import**.
-4. (Opsional) Tambahkan variabel `NEXT_PUBLIC_SITE_URL` pada menu *Environment Variables*.
-5. Klik **Deploy**. Website akan langsung live dengan SSL/HTTPS otomatis dan auto-build setiap ada `git push`.
+1. Import the repository in the Vercel Dashboard.
+2. (Optional) Set `NEXT_PUBLIC_SITE_URL` and `GITHUB_TOKEN` under **Environment Variables**.
+3. Deploy. Automatic builds and SSL certificates are provisioned on every push to `main`.
