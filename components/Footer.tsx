@@ -1,18 +1,16 @@
-import { Github, Instagram, Linkedin, Mail } from "lucide-react";
+import { Github, Instagram, Linkedin } from "lucide-react";
 import { SiThreads } from "react-icons/si";
 
 const GITHUB_URL = "https://github.com/FuzailFr";
 const LINKEDIN_URL = "https://www.linkedin.com/in/fuzail-fazle-rabbi-b73608429";
 const INSTAGRAM_URL = "https://www.instagram.com/fuzailfr/";
 const THREADS_URL = "https://www.threads.net/@fuzailfr";
-const EMAIL = "fuzailfr16@gmail.com";
 
 const FOOTER_LINKS = [
   { label: "GitHub", href: GITHUB_URL, icon: Github },
   { label: "LinkedIn", href: LINKEDIN_URL, icon: Linkedin },
   { label: "Instagram", href: INSTAGRAM_URL, icon: Instagram },
   { label: "Threads", href: THREADS_URL, icon: SiThreads },
-  { label: "Email", href: `mailto:${EMAIL}`, icon: Mail },
 ];
 
 const CURRENT_YEAR = new Date().getFullYear();
@@ -30,8 +28,8 @@ export default function Footer() {
             <a
               key={label}
               href={href}
-              target={href.startsWith("mailto:") ? undefined : "_blank"}
-              rel={href.startsWith("mailto:") ? undefined : "noopener noreferrer"}
+              target="_blank"
+              rel="noopener noreferrer"
               aria-label={label}
               className="text-(--text-muted) transition-colors hover:text-(--text-primary)"
             >
