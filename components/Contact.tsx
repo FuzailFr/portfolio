@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Mail, Copy, Check, Github, Instagram, Linkedin, MessageSquare } from "lucide-react";
+import { Mail, Copy, Check, Github, Instagram, Linkedin, ArrowUpRight } from "lucide-react";
 import { SiThreads } from "react-icons/si";
 
 const EMAIL = "fuzailfr16@gmail.com";
@@ -12,25 +12,20 @@ const THREADS_URL = "https://www.threads.net/@fuzailfr";
 
 const SOCIAL_CARDS = [
   {
-    label: "GitHub",
-    handle: "FuzailFr",
-    href: GITHUB_URL,
-    icon: Github,
-    description: "Repositori kode terbuka, eksperimen proyek, dan kontribusi publik.",
-  },
-  {
     label: "LinkedIn",
     handle: "Fuzail Fazle Rabbi",
     href: LINKEDIN_URL,
     icon: Linkedin,
-    description: "Koneksi profesional, riwayat karir, dan aktivitas industri.",
+    description: "Koneksi profesional, riwayat karir, dan pesan kolaborasi formal.",
+    actionText: "Buka LinkedIn",
   },
   {
     label: "Instagram",
     handle: "fuzailfr",
     href: INSTAGRAM_URL,
     icon: Instagram,
-    description: "Aktivitas personal, dokumentasi visual, dan interaksi kreatif.",
+    description: "Aktivitas personal, dokumentasi visual, dan kirim Direct Message (DM).",
+    actionText: "Kirim DM Instagram",
   },
   {
     label: "Threads",
@@ -38,38 +33,20 @@ const SOCIAL_CARDS = [
     href: THREADS_URL,
     icon: SiThreads,
     description: "Opini teknologi, diskusi santai, dan update seputar rekayasa perangkat lunak.",
+    actionText: "Buka Threads",
+  },
+  {
+    label: "GitHub",
+    handle: "FuzailFr",
+    href: GITHUB_URL,
+    icon: Github,
+    description: "Repositori kode terbuka, issue diskusi, dan kolaborasi open-source.",
+    actionText: "Buka GitHub",
   },
 ];
 
-interface FormState {
-  name: string;
-  email: string;
-  message: string;
-}
-
-interface FormErrors {
-  name?: string;
-  email?: string;
-  message?: string;
-}
-
-function validate(values: FormState): FormErrors {
-  const errors: FormErrors = {};
-  if (!values.name.trim()) errors.name = "Nama wajib diisi.";
-  if (!values.email.trim()) {
-    errors.email = "Email wajib diisi.";
-  } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email)) {
-    errors.email = "Format email tidak valid.";
-  }
-  if (!values.message.trim()) errors.message = "Pesan wajib diisi.";
-  return errors;
-}
-
 export default function Contact() {
   const [copied, setCopied] = useState(false);
-  const [form, setForm] = useState<FormState>({ name: "", email: "", message: "" });
-  const [errors, setErrors] = useState<FormErrors>({});
-  const [submitted, setSubmitted] = useState(false);
 
   const copyEmail = async () => {
     try {
@@ -79,31 +56,6 @@ export default function Contact() {
     } catch {
       // clipboard fallback
     }
-  };
-
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const { name, value } = e.target;
-    setForm((prev) => ({ ...prev, [name]: value }));
-    if (errors[name as keyof FormErrors]) {
-      setErrors((prev) => ({ ...prev, [name]: undefined }));
-    }
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    const errs = validate(form);
-    if (Object.keys(errs).length > 0) {
-      setErrors(errs);
-      return;
-    }
-    const subject = encodeURIComponent(`[Portfolio] Pesan dari ${form.name}`);
-    const body = encodeURIComponent(
-      `Nama: ${form.name}\nEmail: ${form.email}\n\nPesan:\n${form.message}`
-    );
-    window.location.href = `mailto:${EMAIL}?subject=${subject}&body=${body}`;
-    setSubmitted(true);
   };
 
   return (
@@ -118,17 +70,22 @@ export default function Contact() {
             Hubungi Saya
           </h1>
           <p className="mt-3 max-w-2xl text-base leading-relaxed text-(--text-secondary)">
-            Terbuka untuk diskusi proyek rekayasa perangkat lunak, peluang kerja sama teknologi, atau pertanyaan seputar Machine Learning.
+            Terbuka untuk diskusi proyek rekayasa perangkat lunak, peluang kerja sama teknologi, atau pertanyaan seputar Machine Learning & Web Engineering.
           </p>
         </div>
 
         {/* Kotak Email Utama Berukuran Besar */}
         <div className="mt-10 rounded-2xl border-2 border-(--border) bg-(--surface) p-8 md:p-10 shadow-sm">
-          <span className="text-xs font-mono uppercase tracking-wider text-(--text-muted)">
-            Direct Email Address
-          </span>
+          <div className="flex flex-col gap-1">
+            <span className="text-xs font-mono uppercase tracking-wider text-(--text-muted)">
+              Direct Email Address
+            </span>
+            <span className="text-xs text-(--text-secondary)">
+              Kirimkan email langsung dari aplikasi email favorit Anda atau salin alamatnya.
+            </span>
+          </div>
 
-          <div className="mt-3 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+          <div className="mt-4 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <span className="text-2xl font-bold tracking-tight text-(--text-primary) sm:text-3xl md:text-4xl font-mono break-all">
               {EMAIL}
             </span>
@@ -158,144 +115,66 @@ export default function Contact() {
                 className="inline-flex items-center gap-2 rounded border border-(--text-primary) bg-(--text-primary) px-4 py-2.5 text-xs font-medium text-(--bg) hover:opacity-90 transition-opacity"
               >
                 <Mail size={14} />
-                <span>Buka Mail</span>
+                <span>Buka Mail Client</span>
               </a>
             </div>
           </div>
         </div>
 
-        <div className="mt-12 grid gap-12 md:grid-cols-2 items-start">
-          {/* Sisi Kiri: Kartu Media Sosial */}
-          <div>
-            <h2 className="text-lg font-bold tracking-tight text-(--text-primary)">
+        {/* Jaringan Profesional & Sosial */}
+        <div className="mt-14">
+          <div className="border-b border-(--border-subtle) pb-4">
+            <h2 className="text-xl font-bold tracking-tight text-(--text-primary)">
               Jaringan Profesional & Sosial
             </h2>
             <p className="mt-1 text-sm text-(--text-secondary)">
-              Temukan aktivitas kode, jejak karir, dan interaksi saya di platform berikut.
+              Saluran resmi untuk terhubung langsung secara aman tanpa perantara formulir pihak ketiga.
             </p>
-
-            <div className="mt-6 space-y-4">
-              {SOCIAL_CARDS.map((card) => {
-                const Icon = card.icon;
-                return (
-                  <a
-                    key={card.label}
-                    href={card.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group flex items-start gap-4 rounded-xl border border-(--border) bg-(--surface) p-5 transition-colors hover:border-(--accent)"
-                  >
-                    <div className="rounded-lg border border-(--border) bg-(--bg) p-2.5 text-(--text-primary) group-hover:text-(--accent) transition-colors">
-                      <Icon size={20} aria-hidden="true" />
-                    </div>
-                    <div>
-                      <div className="flex items-center gap-2">
-                        <span className="font-bold text-sm text-(--text-primary) group-hover:text-(--accent) transition-colors">
-                          {card.label}
-                        </span>
-                        <span className="text-xs font-mono text-(--text-muted)">
-                          {card.handle}
-                        </span>
-                      </div>
-                      <p className="mt-1 text-xs leading-relaxed text-(--text-secondary)">
-                        {card.description}
-                      </p>
-                    </div>
-                  </a>
-                );
-              })}
-            </div>
           </div>
 
-          {/* Sisi Kanan: Formulir Cepat */}
-          <div className="rounded-xl border border-(--border) bg-(--surface) p-7">
-            <div className="flex items-center gap-2 border-b border-(--border-subtle) pb-3">
-              <MessageSquare size={16} className="text-(--accent)" aria-hidden="true" />
-              <h2 className="font-bold text-sm text-(--text-primary)">
-                Kirimkan Pesan Singkat
-              </h2>
-            </div>
-
-            {submitted ? (
-              <div
-                role="status"
-                className="mt-6 rounded-lg border border-emerald-500/30 bg-emerald-500/10 p-5 text-sm text-(--text-primary)"
-              >
-                Aplikasi email kamu akan terbuka dengan pesan siap kirim. Terima kasih!
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit} noValidate className="mt-6 flex flex-col gap-4">
-                <div className="flex flex-col gap-1.5">
-                  <label htmlFor="contact-name" className="text-xs font-mono text-(--text-primary)">
-                    Nama Anda
-                  </label>
-                  <input
-                    id="contact-name"
-                    name="name"
-                    type="text"
-                    value={form.name}
-                    onChange={handleChange}
-                    aria-invalid={!!errors.name}
-                    className="rounded border bg-(--bg) px-3.5 py-2 text-sm text-(--text-primary) outline-none transition-colors border-(--border) focus:border-(--accent)"
-                    placeholder="Contoh: Alex Pratama"
-                  />
-                  {errors.name && (
-                    <span role="alert" className="text-xs text-red-500">
-                      {errors.name}
-                    </span>
-                  )}
-                </div>
-
-                <div className="flex flex-col gap-1.5">
-                  <label htmlFor="contact-email" className="text-xs font-mono text-(--text-primary)">
-                    Alamat Email
-                  </label>
-                  <input
-                    id="contact-email"
-                    name="email"
-                    type="email"
-                    value={form.email}
-                    onChange={handleChange}
-                    aria-invalid={!!errors.email}
-                    className="rounded border bg-(--bg) px-3.5 py-2 text-sm text-(--text-primary) outline-none transition-colors border-(--border) focus:border-(--accent)"
-                    placeholder="alex@domain.com"
-                  />
-                  {errors.email && (
-                    <span role="alert" className="text-xs text-red-500">
-                      {errors.email}
-                    </span>
-                  )}
-                </div>
-
-                <div className="flex flex-col gap-1.5">
-                  <label htmlFor="contact-message" className="text-xs font-mono text-(--text-primary)">
-                    Isi Pesan
-                  </label>
-                  <textarea
-                    id="contact-message"
-                    name="message"
-                    rows={4}
-                    value={form.message}
-                    onChange={handleChange}
-                    aria-invalid={!!errors.message}
-                    className="resize-none rounded border bg-(--bg) px-3.5 py-2 text-sm text-(--text-primary) outline-none transition-colors border-(--border) focus:border-(--accent)"
-                    placeholder="Tuliskan topik bahasan atau tawaran kolaborasi..."
-                  />
-                  {errors.message && (
-                    <span role="alert" className="text-xs text-red-500">
-                      {errors.message}
-                    </span>
-                  )}
-                </div>
-
-                <button
-                  type="submit"
-                  className="mt-2 rounded border border-(--text-primary) bg-(--text-primary) py-2.5 text-sm font-medium text-(--bg) hover:opacity-90 transition-opacity"
+          <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {SOCIAL_CARDS.map((card) => {
+              const Icon = card.icon;
+              return (
+                <a
+                  key={card.label}
+                  href={card.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex flex-col justify-between rounded-xl border border-(--border) bg-(--surface) p-6 transition-all duration-200 hover:-translate-y-1 hover:border-(--accent) hover:shadow-lg"
                 >
-                  Kirim via Email Client
-                </button>
-              </form>
-            )}
+                  <div>
+                    <div className="flex items-center justify-between">
+                      <div className="rounded-lg border border-(--border) bg-(--bg) p-2.5 text-(--text-primary) group-hover:text-(--accent) transition-colors">
+                        <Icon size={22} aria-hidden="true" />
+                      </div>
+                      <span className="text-[11px] font-mono text-(--accent) uppercase tracking-wider flex items-center gap-0.5">
+                        Direct Link
+                        <ArrowUpRight size={12} />
+                      </span>
+                    </div>
+
+                    <div className="mt-4">
+                      <h3 className="font-bold text-base text-(--text-primary) group-hover:text-(--accent) transition-colors">
+                        {card.label}
+                      </h3>
+                      <p className="mt-0.5 text-xs font-mono text-(--text-muted)">
+                        {card.handle}
+                      </p>
+                    </div>
+
+                    <p className="mt-3 text-xs leading-relaxed text-(--text-secondary)">
+                      {card.description}
+                    </p>
+                  </div>
+
+                  <div className="mt-6 pt-4 border-t border-(--border-subtle) text-xs font-medium text-(--accent) group-hover:underline flex items-center justify-between">
+                    <span>{card.actionText}</span>
+                    <ArrowUpRight size={13} />
+                  </div>
+                </a>
+              );
+            })}
           </div>
         </div>
       </div>
