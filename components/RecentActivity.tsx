@@ -15,7 +15,7 @@ export default function RecentActivity({ repos }: RecentActivityProps) {
 
   return (
     <section className="border-b border-(--border-subtle) py-14">
-      <div className="mx-auto max-w-5xl px-6">
+      <div className="mx-auto max-w-7xl px-6 sm:px-8">
         <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between">
           <div>
             <h2 className="text-xl font-bold tracking-tight text-(--text-primary)">

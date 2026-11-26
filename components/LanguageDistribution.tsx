@@ -10,7 +10,7 @@ export default function LanguageDistribution({ stats }: LanguageDistributionProp
 
   return (
     <section className="border-b border-(--border-subtle) py-12">
-      <div className="mx-auto max-w-5xl px-6">
+      <div className="mx-auto max-w-7xl px-6 sm:px-8">
         <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between">
           <h2 className="text-sm font-semibold uppercase tracking-wider text-(--text-muted)">
             Distribusi Bahasa Repositori Publik

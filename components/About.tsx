@@ -26,7 +26,7 @@ export default async function About() {
 
   return (
     <section id="about" className="py-12">
-      <div className="mx-auto max-w-5xl px-6">
+      <div className="mx-auto max-w-7xl px-6 sm:px-8">
         {/* Header Seksi Profil */}
         <div className="border-b border-(--border-subtle) pb-8">
           <span className="text-xs font-mono uppercase tracking-wider text-(--accent)">

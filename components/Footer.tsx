@@ -15,7 +15,7 @@ const CURRENT_YEAR = new Date().getFullYear();
 export default function Footer() {
   return (
     <footer className="border-t border-(--border-subtle) mt-auto">
-      <div className="mx-auto flex max-w-5xl flex-col gap-4 px-6 py-8 sm:flex-row sm:items-center sm:justify-between">
+      <div className="mx-auto flex max-w-7xl flex-col gap-4 px-6 sm:px-8 py-8 sm:flex-row sm:items-center sm:justify-between">
         <p className="text-xs text-(--text-muted)">
           © {CURRENT_YEAR} Fuzail Fazle Rabbi
         </p>

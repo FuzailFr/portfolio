@@ -41,7 +41,7 @@ const EDUCATION: TimelineItem[] = [
 export default function Experience() {
   return (
     <section id="experience" className="border-t border-(--border-subtle) py-20 bg-(--bg-secondary)/30">
-      <div className="mx-auto max-w-5xl px-6">
+      <div className="mx-auto max-w-7xl px-6 sm:px-8">
         <div>
           <span className="text-xs font-mono uppercase tracking-wider text-(--accent)">
             Jejak Langkah Profesional

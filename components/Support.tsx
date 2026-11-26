@@ -5,7 +5,7 @@ const SAWERIA_PROFILE_URL = "https://saweria.co/Grav3exx";
 export default function Support() {
   return (
     <section id="support" className="border-t border-(--border-subtle) py-16">
-      <div className="mx-auto max-w-5xl px-6">
+      <div className="mx-auto max-w-7xl px-6 sm:px-8">
         <h2 className="text-xl font-bold tracking-tight text-(--text-primary)">
           Dukungan Pengembang
         </h2>

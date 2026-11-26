@@ -63,7 +63,7 @@ export default async function Home() {
 
       {/* 6. Proyek Pilihan dengan Layout Bervariasi */}
       <section className="py-20">
-        <div className="mx-auto max-w-5xl px-6">
+        <div className="mx-auto max-w-7xl px-6 sm:px-8">
           <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
             <div>
               <h2 className="text-3xl font-extrabold tracking-tight text-(--text-primary)">
@@ -94,7 +94,7 @@ export default async function Home() {
           {/* Section Ajakan Diskusi / Hubungi dengan skala visual kontras */}
           <div className="mt-16 rounded-xl border border-(--border) bg-gradient-to-r from-(--surface) to-(--bg-secondary) p-8 md:p-12 shadow-sm">
             <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
-              <div className="max-w-xl">
+              <div className="max-w-2xl">
                 <span className="text-xs font-mono uppercase tracking-wider text-(--accent)">
                   Kolaborasi & Karir
                 </span>

@@ -14,7 +14,7 @@ export default function StatsStrip({
 }: StatsStripProps) {
   return (
     <section className="border-b border-(--border-subtle) bg-(--surface)/30 py-8">
-      <div className="mx-auto max-w-5xl px-6">
+      <div className="mx-auto max-w-7xl px-6 sm:px-8">
         <div className="grid grid-cols-2 gap-6 sm:grid-cols-4 md:gap-8">
           {/* Stat 1: Repositori Publik */}
           <div className="flex flex-col border-l-2 border-(--accent) pl-4">

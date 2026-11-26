@@ -38,7 +38,7 @@ export default function Navbar() {
     <header className="sticky top-0 z-50 border-b bg-(--bg)/95 backdrop-saturate-100 border-(--border-subtle)">
       <nav
         aria-label="Navigasi Utama"
-        className="mx-auto flex h-16 max-w-5xl items-center justify-between px-6"
+        className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6 sm:px-8"
       >
         <Link
           href="/"

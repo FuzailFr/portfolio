@@ -15,7 +15,7 @@ export default function Hero({ profile }: HeroProps) {
       id="top"
       className="relative border-b border-(--border-subtle) [background:var(--hero-gradient)] overflow-hidden"
     >
-      <div className="mx-auto max-w-5xl px-6 py-20 md:py-28">
+      <div className="mx-auto max-w-7xl px-6 sm:px-8 py-20 md:py-28">
         <div className="grid gap-10 md:grid-cols-[1.5fr_1fr] md:items-center">
           {/* Kolom Kiri: Teks & Aksi */}
           <div className="flex flex-col justify-center">
@@ -33,7 +33,7 @@ export default function Hero({ profile }: HeroProps) {
               Software Engineer — Backend Systems & AI Integration
             </p>
 
-            <p className="mt-5 max-w-xl text-base leading-relaxed text-(--text-secondary)">
+            <p className="mt-5 max-w-2xl text-base sm:text-lg leading-relaxed text-(--text-secondary)">
               Membangun aplikasi terdistribusi yang terukur, mengintegrasikan model AI ke dalam alur kerja produksi, dan merancang arsitektur web modern yang tangguh.
             </p>
 
@@ -91,8 +91,9 @@ export default function Hero({ profile }: HeroProps) {
               </div>
 
               {/* Taglet metadata di sudut bawah avatar */}
-              <div className="absolute -bottom-3 -left-3 rounded-md border border-(--border) bg-(--bg) px-3 py-1.5 text-xs font-mono text-(--text-primary) shadow-md">
-                @{profile.username}
+              <div className="absolute -bottom-3 -left-3 flex items-center gap-1.5 rounded-md border border-(--border) bg-(--bg) px-3 py-1.5 text-xs font-mono text-(--text-primary) shadow-md">
+                <Github size={13} className="text-(--accent) shrink-0" aria-hidden="true" />
+                <span>{profile.username}</span>
               </div>
             </div>
           </div>

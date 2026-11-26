@@ -42,7 +42,7 @@ export default async function ProjectsPage() {
 
   return (
     <div className="py-16">
-      <div className="mx-auto max-w-5xl px-6">
+      <div className="mx-auto max-w-7xl px-6 sm:px-8">
         {/* Header dengan Ringkasan Statistik Nyata */}
         <div className="border-b border-(--border-subtle) pb-8">
           <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
