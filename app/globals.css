@@ -81,18 +81,25 @@ textarea {
 
 /* Marquee animasi pelan dan halus */
 @keyframes marqueeScroll {
-  0% {
-    transform: translateX(0%);
+  from {
+    transform: translate3d(0, 0, 0);
   }
-  100% {
-    transform: translateX(-50%);
+  to {
+    transform: translate3d(-50%, 0, 0);
   }
 }
 
 .animate-marquee {
-  display: flex;
-  width: max-content;
-  animation: marqueeScroll 35s linear infinite;
+  display: flex !important;
+  width: max-content !important;
+  will-change: transform;
+  animation: marqueeScroll 25s linear infinite !important;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .animate-marquee:hover {
+    animation-play-state: paused;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -104,19 +111,5 @@ textarea {
     animation: none !important;
     opacity: 1 !important;
     transform: none !important;
-  }
-
-  .animate-marquee {
-    animation: none !important;
-    transform: none !important;
-  }
-
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
   }
 }

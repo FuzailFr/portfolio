@@ -22,8 +22,8 @@ export default function TechMarquee() {
   const duplicatedList = [...MARQUEE_TECH, ...MARQUEE_TECH];
 
   return (
-    <div className="relative border-y border-(--border-subtle) bg-(--bg-secondary)/40 py-4 overflow-hidden">
-      <div className="flex w-max animate-marquee hover:[animation-play-state:paused] gap-8 items-center">
+    <div className="relative border-y border-(--border-subtle) bg-(--bg-secondary)/40 py-4 overflow-hidden select-none">
+      <div className="flex w-max animate-marquee gap-8 items-center">
         {duplicatedList.map((item, idx) => (
           <div
             key={`${item}-${idx}`}
