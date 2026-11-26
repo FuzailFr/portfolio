@@ -27,12 +27,14 @@ export default async function Home() {
     const liveRepo = repos.find(
       (r) => r.name.toLowerCase() === proj.repoName.toLowerCase()
     );
+    const hasExternalDemo =
+      liveRepo?.homepage &&
+      liveRepo.homepage.trim() !== "" &&
+      !liveRepo.homepage.toLowerCase().includes("github.com/fuzailfr/");
+
     return {
       ...proj,
-      demoUrl:
-        liveRepo?.homepage && liveRepo.homepage.trim() !== ""
-          ? liveRepo.homepage
-          : proj.demoUrl,
+      demoUrl: (hasExternalDemo ? liveRepo.homepage : proj.demoUrl) ?? undefined,
     };
   });
   const featuredProjects = enrichedFeatured;
@@ -80,11 +82,14 @@ export default async function Home() {
             </Link>
           </div>
 
-          {/* Grid Proyek Pilihan (2x2 Grid) */}
-          <div className="mt-10 grid gap-6 md:grid-cols-2">
+          {/* Grid Proyek Pilihan: Asimetris (1 Kartu Besar Utama + 3 Kartu Pendamping) */}
+          <div className="mt-10 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
             {featuredProjects.map((project, idx) => (
-              <div key={project.slug}>
-                <FeaturedProjectCard project={project} priority={idx < 2} />
+              <div
+                key={project.slug}
+                className={idx === 0 ? "md:col-span-2 lg:col-span-3" : "col-span-1"}
+              >
+                <FeaturedProjectCard project={project} priority={idx === 0} />
               </div>
             ))}
           </div>

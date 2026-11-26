@@ -29,12 +29,14 @@ export default async function ProjectsPage() {
     const liveRepo = allRepos.find(
       (r) => r.name.toLowerCase() === proj.repoName.toLowerCase()
     );
+    const hasExternalDemo =
+      liveRepo?.homepage &&
+      liveRepo.homepage.trim() !== "" &&
+      !liveRepo.homepage.toLowerCase().includes("github.com/fuzailfr/");
+
     return {
       ...proj,
-      demoUrl:
-        liveRepo?.homepage && liveRepo.homepage.trim() !== ""
-          ? liveRepo.homepage
-          : proj.demoUrl,
+      demoUrl: (hasExternalDemo ? liveRepo.homepage : proj.demoUrl) ?? undefined,
     };
   });
 

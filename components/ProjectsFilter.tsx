@@ -99,10 +99,13 @@ export default function ProjectsFilter({
             </h2>
           </div>
 
-          <div className="mt-6 grid gap-6 md:grid-cols-2">
+          <div className="mt-6 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
             {filteredFeatured.map((project, idx) => (
-              <div key={project.slug}>
-                <FeaturedProjectCard project={project} priority={idx < 2} />
+              <div
+                key={project.slug}
+                className={idx === 0 ? "md:col-span-2 lg:col-span-3" : "col-span-1"}
+              >
+                <FeaturedProjectCard project={project} priority={idx === 0} />
               </div>
             ))}
           </div>
