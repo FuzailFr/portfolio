@@ -1,12 +1,14 @@
-import { Github, Linkedin, Mail } from "lucide-react";
+import { Github, Instagram, Linkedin, Mail } from "lucide-react";
 
 const GITHUB_URL = "https://github.com/FuzailFr";
 const LINKEDIN_URL = "https://www.linkedin.com/in/fuzail-fazle-rabbi-b73608429";
+const INSTAGRAM_URL = "https://www.instagram.com/fuzailfr/";
 const EMAIL = "fuzailfr16@gmail.com";
 
 const FOOTER_LINKS = [
   { label: "GitHub", href: GITHUB_URL, icon: Github },
   { label: "LinkedIn", href: LINKEDIN_URL, icon: Linkedin },
+  { label: "Instagram", href: INSTAGRAM_URL, icon: Instagram },
   { label: "Email", href: `mailto:${EMAIL}`, icon: Mail },
 ];
 

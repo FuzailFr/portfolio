@@ -1,16 +1,17 @@
 "use client";
 
 import { useState } from "react";
-import { Mail, Copy, Check, Github, Linkedin, MessageSquare } from "lucide-react";
+import { Mail, Copy, Check, Github, Instagram, Linkedin, MessageSquare } from "lucide-react";
 
 const EMAIL = "fuzailfr16@gmail.com";
 const LINKEDIN_URL = "https://www.linkedin.com/in/fuzail-fazle-rabbi-b73608429";
 const GITHUB_URL = "https://github.com/FuzailFr";
+const INSTAGRAM_URL = "https://www.instagram.com/fuzailfr/";
 
 const SOCIAL_CARDS = [
   {
     label: "GitHub",
-    handle: "@FuzailFr",
+    handle: "github.com/FuzailFr",
     href: GITHUB_URL,
     icon: Github,
     description: "Repositori kode terbuka, eksperimen proyek, dan kontribusi publik.",
@@ -21,6 +22,13 @@ const SOCIAL_CARDS = [
     href: LINKEDIN_URL,
     icon: Linkedin,
     description: "Koneksi profesional, riwayat karir, dan aktivitas industri.",
+  },
+  {
+    label: "Instagram",
+    handle: "@fuzailfr",
+    href: INSTAGRAM_URL,
+    icon: Instagram,
+    description: "Aktivitas personal, dokumentasi visual, dan interaksi kreatif.",
   },
 ];
 
@@ -151,10 +159,10 @@ export default function Contact() {
           {/* Sisi Kiri: Kartu Media Sosial */}
           <div>
             <h2 className="text-lg font-bold tracking-tight text-(--text-primary)">
-              Jaringan Profesional
+              Jaringan Profesional & Sosial
             </h2>
             <p className="mt-1 text-sm text-(--text-secondary)">
-              Temukan aktivitas kode dan jejak karir saya di platform berikut.
+              Temukan aktivitas kode, jejak karir, dan interaksi saya di platform berikut.
             </p>
 
             <div className="mt-6 space-y-4">
