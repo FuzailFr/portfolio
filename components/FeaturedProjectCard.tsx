@@ -19,53 +19,53 @@ export default function FeaturedProjectCard({
   const showImage = Boolean(project.screenshot) && !imageError;
   const hasLiveDemo = Boolean(project.demoUrl && project.demoUrl.trim() !== "");
 
-  // Render preview khusus per proyek agar setiap kartu memiliki identitas visual & animasi unik
+  // Render preview mockup khusus dengan tata letak luas & teks yang terbaca jelas
   const renderThemedMockup = () => {
     switch (project.slug) {
       case "antigravity-essentials":
         return (
           <div className="flex h-full w-full flex-col justify-between p-4 sm:p-5 bg-(--bg-secondary)/90 font-mono text-xs select-none">
-            {/* Window Bar */}
-            <div className="flex items-center justify-between border-b border-(--border-subtle) pb-3 text-(--text-muted)">
-              <div className="flex items-center gap-2">
-                <span className="h-2.5 w-2.5 rounded-full bg-red-500/80" />
-                <span className="h-2.5 w-2.5 rounded-full bg-amber-500/80" />
-                <span className="h-2.5 w-2.5 rounded-full bg-emerald-500/80" />
-                <span className="ml-2 text-[11px] text-(--text-muted) flex items-center gap-1.5">
-                  <Terminal size={12} className="text-(--accent)" />
-                  bash ~ antigravity-essentials
+            {/* Top Bar: URL + Badge dengan shrink-0 agar tidak pernah terpotong */}
+            <div className="flex items-center justify-between gap-3 border-b border-(--border-subtle) pb-2.5">
+              <div className="flex items-center gap-2 min-w-0 flex-1">
+                <span className="h-2.5 w-2.5 shrink-0 rounded-full bg-red-500/80" />
+                <span className="h-2.5 w-2.5 shrink-0 rounded-full bg-amber-500/80" />
+                <span className="h-2.5 w-2.5 shrink-0 rounded-full bg-emerald-500/80" />
+                <span className="ml-1 text-[11px] text-(--text-muted) truncate flex items-center gap-1.5">
+                  <Terminal size={12} className="text-(--accent) shrink-0" />
+                  antigravity-essentials
                 </span>
               </div>
-              <span className="rounded bg-indigo-500/10 px-2 py-0.5 text-[10px] font-semibold text-indigo-400 border border-indigo-500/20">
-                CLI & RULES BUNDLE
+              <span className="shrink-0 whitespace-nowrap rounded bg-indigo-500/10 px-2 py-0.5 text-[10px] font-semibold text-indigo-400 border border-indigo-500/20">
+                CLI & RULES
               </span>
             </div>
 
-            {/* Code / Command Prompt Output */}
-            <div className="py-3 sm:py-4 space-y-1.5 text-[11px] sm:text-xs leading-relaxed">
-              <div className="text-(--accent) flex items-center gap-1">
-                <span>$</span>
-                <span className="text-(--text-primary)">npx antigravity-essentials --active</span>
+            {/* Code Output */}
+            <div className="py-2.5 space-y-1.5 text-[11px] sm:text-xs leading-relaxed">
+              <div className="text-(--accent) flex items-center gap-1.5">
+                <span className="font-bold">$</span>
+                <span className="text-(--text-primary)">npx antigravity-essentials --status</span>
               </div>
               <div className="text-emerald-400">
-                ✔ Modules loaded: [jagoan, anti-slop, humanizer-id]
+                ✔ Loaded: [jagoan, anti-slop, humanizer-id]
               </div>
               <div className="text-(--text-secondary)">
-                ⚙ Engine: Caveman Lite (Adaptive token compression)
+                ⚙ Engine: Caveman Lite (Token Saver: Active)
               </div>
-              <div className="text-(--text-muted) flex items-center gap-1">
-                <span>&gt; Ready for Cursor, Claude Code, Windsurf & Antigravity</span>
-                <span className="inline-block w-2 h-3.5 bg-(--accent) animate-pulse" />
+              <div className="text-(--text-muted) flex items-center gap-1 truncate">
+                <span>&gt; Cursor, Claude Code, Windsurf & Antigravity</span>
+                <span className="inline-block w-2 h-3.5 bg-(--accent) animate-pulse shrink-0" />
               </div>
             </div>
 
             {/* Terminal Status Footer */}
-            <div className="flex items-center justify-between border-t border-(--border-subtle) pt-2 text-[10px] sm:text-[11px] text-(--text-muted)">
-              <span className="flex items-center gap-1 text-(--text-secondary)">
-                <Sparkles size={11} className="text-(--accent)" />
+            <div className="flex items-center justify-between border-t border-(--border-subtle) pt-2 text-[11px] text-(--text-muted)">
+              <span className="flex items-center gap-1 text-(--text-secondary) truncate">
+                <Sparkles size={11} className="text-(--accent) shrink-0" />
                 Prompt Engineering
               </span>
-              <span className="text-emerald-400 font-semibold">Ready to install</span>
+              <span className="text-emerald-400 font-semibold shrink-0">Open Source</span>
             </div>
           </div>
         );
@@ -73,55 +73,55 @@ export default function FeaturedProjectCard({
       case "rouve-co":
         return (
           <div className="flex h-full w-full flex-col justify-between p-4 sm:p-5 bg-(--bg-secondary)/80 font-mono text-xs select-none">
-            {/* Browser Address Bar */}
-            <div className="flex items-center justify-between border-b border-(--border-subtle) pb-3 text-(--text-muted)">
-              <div className="flex items-center gap-2">
-                <span className="h-2.5 w-2.5 rounded-full bg-red-500/80" />
-                <span className="h-2.5 w-2.5 rounded-full bg-amber-500/80" />
-                <span className="h-2.5 w-2.5 rounded-full bg-emerald-500/80" />
-                <span className="ml-2 text-[11px] text-(--text-muted) truncate max-w-[140px] sm:max-w-none">
-                  https://rouve-co.vercel.app
+            {/* Top Bar: URL + Badge */}
+            <div className="flex items-center justify-between gap-3 border-b border-(--border-subtle) pb-2.5">
+              <div className="flex items-center gap-2 min-w-0 flex-1">
+                <span className="h-2.5 w-2.5 shrink-0 rounded-full bg-red-500/80" />
+                <span className="h-2.5 w-2.5 shrink-0 rounded-full bg-amber-500/80" />
+                <span className="h-2.5 w-2.5 shrink-0 rounded-full bg-emerald-500/80" />
+                <span className="ml-1 text-[11px] text-(--text-muted) truncate">
+                  rouve-co.vercel.app
                 </span>
               </div>
-              <span className="inline-flex items-center gap-1.5 rounded bg-emerald-500/10 px-2 py-0.5 text-[10px] font-semibold text-emerald-400 border border-emerald-500/20">
+              <span className="shrink-0 whitespace-nowrap inline-flex items-center gap-1.5 rounded bg-emerald-500/10 px-2 py-0.5 text-[10px] font-semibold text-emerald-400 border border-emerald-500/20">
                 <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                LIVE WEB APP
+                LIVE DEMO
               </span>
             </div>
 
             {/* Catalog UI Mockup */}
-            <div className="py-3 flex flex-col justify-center">
+            <div className="py-2.5 flex flex-col justify-center">
               <div className="rounded-md border border-(--border) bg-(--surface) p-3 shadow-inner">
                 <div className="flex items-center justify-between">
-                  <span className="font-sans font-bold text-sm text-(--text-primary)">
-                    Rouve Co. Fashion Catalog
+                  <span className="font-sans font-bold text-xs sm:text-sm text-(--text-primary)">
+                    Rouve Co. Apparel Catalog
                   </span>
-                  <span className="text-[10px] text-(--accent) bg-(--accent-muted) px-2 py-0.5 rounded">
-                    E-Commerce V1
+                  <span className="text-[10px] text-(--accent) bg-(--accent-muted) px-2 py-0.5 rounded font-mono shrink-0">
+                    V1 Live
                   </span>
                 </div>
-                <div className="mt-2.5 grid grid-cols-3 gap-2">
-                  <div className="h-10 rounded bg-(--bg) border border-(--border-subtle) flex items-center justify-center text-[10px] text-(--text-muted)">
-                    Card A
+                <div className="mt-2 grid grid-cols-3 gap-2 text-[10px] text-(--text-secondary)">
+                  <div className="rounded bg-(--bg) border border-(--border-subtle) p-1.5 text-center truncate">
+                    Tee · 189K
                   </div>
-                  <div className="h-10 rounded bg-(--bg) border border-(--border-subtle) flex items-center justify-center text-[10px] text-(--text-muted)">
-                    Card B
+                  <div className="rounded bg-(--bg) border border-(--border-subtle) p-1.5 text-center truncate">
+                    Pants · 329K
                   </div>
-                  <div className="h-10 rounded bg-(--bg) border border-(--border-subtle) flex items-center justify-center text-[10px] text-(--text-muted)">
-                    Card C
+                  <div className="rounded bg-(--bg) border border-(--border-subtle) p-1.5 text-center truncate">
+                    Jacket · 459K
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Footer Status */}
-            <div className="flex items-center justify-between border-t border-(--border-subtle) pt-2 text-[10px] sm:text-[11px] text-(--text-muted)">
-              <span className="flex items-center gap-1 text-(--text-secondary)">
-                <Layers size={11} className="text-(--accent)" />
+            {/* Footer */}
+            <div className="flex items-center justify-between border-t border-(--border-subtle) pt-2 text-[11px] text-(--text-muted)">
+              <span className="flex items-center gap-1 text-(--text-secondary) truncate">
+                <Layers size={11} className="text-(--accent) shrink-0" />
                 Modern Responsive Styling
               </span>
-              <span className="text-(--accent) flex items-center gap-1">
-                Live on Vercel <ExternalLink size={11} />
+              <span className="text-(--accent) flex items-center gap-1 shrink-0">
+                Live App <ExternalLink size={11} />
               </span>
             </div>
           </div>
@@ -130,52 +130,52 @@ export default function FeaturedProjectCard({
       case "zailtrack":
         return (
           <div className="flex h-full w-full flex-col justify-between p-4 sm:p-5 bg-(--bg-secondary)/80 font-mono text-xs select-none">
-            {/* Browser Address Bar */}
-            <div className="flex items-center justify-between border-b border-(--border-subtle) pb-3 text-(--text-muted)">
-              <div className="flex items-center gap-2">
-                <span className="h-2.5 w-2.5 rounded-full bg-red-500/80" />
-                <span className="h-2.5 w-2.5 rounded-full bg-amber-500/80" />
-                <span className="h-2.5 w-2.5 rounded-full bg-emerald-500/80" />
-                <span className="ml-2 text-[11px] text-(--text-muted) truncate max-w-[140px] sm:max-w-none">
-                  https://zail-track.vercel.app
+            {/* Top Bar: URL + Badge */}
+            <div className="flex items-center justify-between gap-3 border-b border-(--border-subtle) pb-2.5">
+              <div className="flex items-center gap-2 min-w-0 flex-1">
+                <span className="h-2.5 w-2.5 shrink-0 rounded-full bg-red-500/80" />
+                <span className="h-2.5 w-2.5 shrink-0 rounded-full bg-amber-500/80" />
+                <span className="h-2.5 w-2.5 shrink-0 rounded-full bg-emerald-500/80" />
+                <span className="ml-1 text-[11px] text-(--text-muted) truncate">
+                  zail-track.vercel.app
                 </span>
               </div>
-              <span className="inline-flex items-center gap-1.5 rounded bg-emerald-500/10 px-2 py-0.5 text-[10px] font-semibold text-emerald-400 border border-emerald-500/20">
+              <span className="shrink-0 whitespace-nowrap inline-flex items-center gap-1.5 rounded bg-emerald-500/10 px-2 py-0.5 text-[10px] font-semibold text-emerald-400 border border-emerald-500/20">
                 <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                DASHBOARD LIVE
+                LIVE APP
               </span>
             </div>
 
             {/* Dashboard Analytics Mockup */}
-            <div className="py-3 flex flex-col justify-center">
+            <div className="py-2.5 flex flex-col justify-center">
               <div className="rounded-md border border-(--border) bg-(--surface) p-3 shadow-inner">
                 <div className="flex items-center justify-between text-xs">
-                  <span className="font-sans font-bold text-(--text-primary)">
-                    ZailTrack Productivity Metrics
+                  <span className="font-sans font-bold text-(--text-primary) truncate">
+                    Productivity Tracking Stream
                   </span>
-                  <span className="text-[10px] text-emerald-400 font-mono">
-                    98.2% Activity
+                  <span className="text-[10px] text-emerald-400 font-mono shrink-0 ml-2">
+                    98.2% Active
                   </span>
                 </div>
-                {/* Mini chart visual bars */}
-                <div className="mt-3 flex items-end gap-2 h-9 px-1">
-                  <div className="w-1/6 bg-(--accent)/40 rounded-t h-4" />
-                  <div className="w-1/6 bg-(--accent)/60 rounded-t h-7" />
-                  <div className="w-1/6 bg-(--accent) rounded-t h-9" />
-                  <div className="w-1/6 bg-(--accent)/80 rounded-t h-6" />
-                  <div className="w-1/6 bg-(--accent)/50 rounded-t h-5" />
-                  <div className="w-1/6 bg-(--accent)/70 rounded-t h-8" />
+                {/* Visual bar metrics */}
+                <div className="mt-2.5 flex items-end gap-2 h-8 px-1">
+                  <div className="w-1/6 bg-(--accent)/40 rounded-t h-3.5" />
+                  <div className="w-1/6 bg-(--accent)/60 rounded-t h-6" />
+                  <div className="w-1/6 bg-(--accent) rounded-t h-8" />
+                  <div className="w-1/6 bg-(--accent)/80 rounded-t h-5.5" />
+                  <div className="w-1/6 bg-(--accent)/50 rounded-t h-4.5" />
+                  <div className="w-1/6 bg-(--accent)/70 rounded-t h-7" />
                 </div>
               </div>
             </div>
 
-            {/* Footer Status */}
-            <div className="flex items-center justify-between border-t border-(--border-subtle) pt-2 text-[10px] sm:text-[11px] text-(--text-muted)">
-              <span className="flex items-center gap-1 text-(--text-secondary)">
-                <Activity size={11} className="text-(--accent)" />
-                Task & Event Logging
+            {/* Footer */}
+            <div className="flex items-center justify-between border-t border-(--border-subtle) pt-2 text-[11px] text-(--text-muted)">
+              <span className="flex items-center gap-1 text-(--text-secondary) truncate">
+                <Activity size={11} className="text-(--accent) shrink-0" />
+                Activity Logging
               </span>
-              <span className="text-(--accent) flex items-center gap-1">
+              <span className="text-(--accent) flex items-center gap-1 shrink-0">
                 Live App <ExternalLink size={11} />
               </span>
             </div>
@@ -185,47 +185,47 @@ export default function FeaturedProjectCard({
       case "smart-waste-management":
         return (
           <div className="flex h-full w-full flex-col justify-between p-4 sm:p-5 bg-(--bg-secondary)/80 font-mono text-xs select-none">
-            {/* Header */}
-            <div className="flex items-center justify-between border-b border-(--border-subtle) pb-3 text-(--text-muted)">
-              <div className="flex items-center gap-2">
-                <span className="h-2.5 w-2.5 rounded-full bg-red-500/80" />
-                <span className="h-2.5 w-2.5 rounded-full bg-amber-500/80" />
-                <span className="h-2.5 w-2.5 rounded-full bg-emerald-500/80" />
-                <span className="ml-2 text-[11px] text-(--text-muted) truncate max-w-[140px] sm:max-w-none">
-                  smart-waste // ml-sensor
+            {/* Top Bar: URL + Badge */}
+            <div className="flex items-center justify-between gap-3 border-b border-(--border-subtle) pb-2.5">
+              <div className="flex items-center gap-2 min-w-0 flex-1">
+                <span className="h-2.5 w-2.5 shrink-0 rounded-full bg-red-500/80" />
+                <span className="h-2.5 w-2.5 shrink-0 rounded-full bg-amber-500/80" />
+                <span className="h-2.5 w-2.5 shrink-0 rounded-full bg-emerald-500/80" />
+                <span className="ml-1 text-[11px] text-(--text-muted) truncate">
+                  smart-waste-sensor
                 </span>
               </div>
-              <span className="inline-flex items-center gap-1.5 rounded bg-emerald-500/10 px-2 py-0.5 text-[10px] font-semibold text-emerald-400 border border-emerald-500/20">
+              <span className="shrink-0 whitespace-nowrap inline-flex items-center gap-1.5 rounded bg-emerald-500/10 px-2 py-0.5 text-[10px] font-semibold text-emerald-400 border border-emerald-500/20">
                 <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                ML & IOT SYSTEM
+                AI & IOT
               </span>
             </div>
 
             {/* Sensory Scanner Display */}
-            <div className="py-3 flex flex-col justify-center">
+            <div className="py-2.5 flex flex-col justify-center">
               <div className="rounded-md border border-(--border) bg-(--surface) p-3 shadow-inner">
                 <div className="flex items-center justify-between">
-                  <span className="font-sans font-bold text-xs text-(--text-primary)">
-                    Automated Waste Classification
+                  <span className="font-sans font-bold text-xs text-(--text-primary) truncate">
+                    Waste Material Classifier
                   </span>
-                  <span className="text-[10px] text-amber-400 font-mono flex items-center gap-1">
-                    <span className="h-1.5 w-1.5 rounded-full bg-amber-400" /> Sensor Active
+                  <span className="text-[10px] text-amber-400 font-mono shrink-0 ml-2 flex items-center gap-1">
+                    <span className="h-1.5 w-1.5 rounded-full bg-amber-400" /> Sensor OK
                   </span>
                 </div>
-                <div className="mt-2.5 flex items-center justify-between rounded bg-(--bg) px-2.5 py-1.5 border border-(--border-subtle) text-[11px]">
-                  <span className="text-(--text-secondary)">Prediction:</span>
-                  <span className="font-bold text-emerald-400">Recyclable Material (98.4%)</span>
+                <div className="mt-2 flex items-center justify-between rounded bg-(--bg) px-2.5 py-1.5 border border-(--border-subtle) text-[11px]">
+                  <span className="text-(--text-secondary)">Detected:</span>
+                  <span className="font-bold text-emerald-400 truncate ml-1">Recyclable (98.4%)</span>
                 </div>
               </div>
             </div>
 
-            {/* Footer Status */}
-            <div className="flex items-center justify-between border-t border-(--border-subtle) pt-2 text-[10px] sm:text-[11px] text-(--text-muted)">
-              <span className="flex items-center gap-1 text-(--text-secondary)">
-                <Trash2 size={11} className="text-(--accent)" />
+            {/* Footer */}
+            <div className="flex items-center justify-between border-t border-(--border-subtle) pt-2 text-[11px] text-(--text-muted)">
+              <span className="flex items-center gap-1 text-(--text-secondary) truncate">
+                <Trash2 size={11} className="text-(--accent) shrink-0" />
                 IoT Volume Sensing
               </span>
-              <span className="text-(--accent) flex items-center gap-1">
+              <span className="text-(--accent) flex items-center gap-1 shrink-0">
                 Demo Online <ExternalLink size={11} />
               </span>
             </div>
@@ -234,19 +234,19 @@ export default function FeaturedProjectCard({
 
       default:
         return (
-          <div className="flex h-full w-full flex-col justify-between p-5 bg-(--bg-secondary)/60 font-mono text-xs">
-            <div className="flex items-center justify-between border-b border-(--border-subtle) pb-3 text-(--text-muted)">
-              <div className="flex items-center gap-2">
+          <div className="flex h-full w-full flex-col justify-between p-4 sm:p-5 bg-(--bg-secondary)/60 font-mono text-xs">
+            <div className="flex items-center justify-between border-b border-(--border-subtle) pb-2.5 text-(--text-muted)">
+              <div className="flex items-center gap-2 truncate">
                 <span className="h-2 w-2 rounded-full bg-red-500/80" />
                 <span className="h-2 w-2 rounded-full bg-amber-500/80" />
                 <span className="h-2 w-2 rounded-full bg-emerald-500/80" />
-                <span className="ml-2 text-[11px]">{project.slug}</span>
+                <span className="ml-1 text-[11px] truncate">{project.slug}</span>
               </div>
-              <span className="text-[10px] uppercase text-(--accent)">
+              <span className="text-[10px] uppercase text-(--accent) shrink-0 whitespace-nowrap">
                 {hasLiveDemo ? "Live App" : "Repository"}
               </span>
             </div>
-            <div className="py-4 text-center font-semibold text-(--text-primary)">
+            <div className="py-3 text-center font-semibold text-(--text-primary)">
               {project.title}
             </div>
             <div className="flex justify-between border-t border-(--border-subtle) pt-2 text-[11px] text-(--text-muted)">
@@ -259,10 +259,10 @@ export default function FeaturedProjectCard({
   };
 
   return (
-    <article className="group relative flex flex-col overflow-hidden rounded-xl border border-(--border) bg-(--surface) transition-all duration-300 hover:-translate-y-1.5 hover:shadow-2xl hover:border-(--accent)/60">
-      {/* Screenshot / Media Frame dengan efek zoom interaktif */}
+    <article className="group relative flex flex-col overflow-hidden rounded-xl border border-(--border) bg-(--surface) transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:border-(--accent)">
+      {/* Screenshot / Media Frame dengan zoom mikro */}
       <div className="relative aspect-video w-full overflow-hidden border-b border-(--border-subtle) bg-(--bg-secondary)">
-        <div className="h-full w-full transition-transform duration-500 group-hover:scale-[1.02]">
+        <div className="h-full w-full transition-transform duration-500 group-hover:scale-[1.01]">
           {showImage && project.screenshot ? (
             <Image
               src={project.screenshot}
@@ -282,7 +282,7 @@ export default function FeaturedProjectCard({
 
       {/* Card Content */}
       <div className="flex flex-1 flex-col p-6">
-        <h3 className="text-xl font-bold tracking-tight text-(--text-primary) transition-colors group-hover:text-(--accent)">
+        <h3 className="text-xl font-bold tracking-tight text-(--text-primary) transition-colors duration-200 group-hover:text-(--accent)">
           {project.title}
         </h3>
 
