@@ -2,16 +2,18 @@
 
 import { useState } from "react";
 import { Mail, Copy, Check, Github, Instagram, Linkedin, MessageSquare } from "lucide-react";
+import { SiThreads } from "react-icons/si";
 
 const EMAIL = "fuzailfr16@gmail.com";
 const LINKEDIN_URL = "https://www.linkedin.com/in/fuzail-fazle-rabbi-b73608429";
 const GITHUB_URL = "https://github.com/FuzailFr";
 const INSTAGRAM_URL = "https://www.instagram.com/fuzailfr/";
+const THREADS_URL = "https://www.threads.net/@fuzailfr";
 
 const SOCIAL_CARDS = [
   {
     label: "GitHub",
-    handle: "github.com/FuzailFr",
+    handle: "FuzailFr",
     href: GITHUB_URL,
     icon: Github,
     description: "Repositori kode terbuka, eksperimen proyek, dan kontribusi publik.",
@@ -25,10 +27,17 @@ const SOCIAL_CARDS = [
   },
   {
     label: "Instagram",
-    handle: "@fuzailfr",
+    handle: "fuzailfr",
     href: INSTAGRAM_URL,
     icon: Instagram,
     description: "Aktivitas personal, dokumentasi visual, dan interaksi kreatif.",
+  },
+  {
+    label: "Threads",
+    handle: "fuzailfr",
+    href: THREADS_URL,
+    icon: SiThreads,
+    description: "Opini teknologi, diskusi santai, dan update seputar rekayasa perangkat lunak.",
   },
 ];
 
